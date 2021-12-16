@@ -26,7 +26,7 @@ export default function App() {
 
 const handleNotificationResponse = (response: Notifications.NotificationResponse) => {
   console.log(response);
-  alert(response);
+  alert("プッシュのデータを取得しました");
 };
 
 const styles = StyleSheet.create({
