@@ -10,9 +10,15 @@ export default function App() {
   const [expoPushToken, setExpoPushToken] = useState('');
 
   useEffect(() => {
-    registerForPushNotificationAsync().then(token => setExpoPushToken(token));
-
     Notifications.addNotificationResponseReceivedListener(handleNotificationResponse);
+    Notifications.getLastNotificationResponseAsync().then(response => {
+      if(response) {
+        console.log("通知押下アプリ起動時に取得")
+        handleNotificationResponse(response);
+      }
+    });
+
+    registerForPushNotificationAsync().then(token => setExpoPushToken(token));
   },[])
 
   return (
